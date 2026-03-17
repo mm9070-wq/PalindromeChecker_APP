@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class UseCase9PalindromeCheckerApp {
+
+    // Main method - Entry point
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input from user
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        // Check palindrome using recursion
+        boolean isPalindrome = checkPalindrome(input, 0, input.length() - 1);
+
+        // Output result
+        if (isPalindrome) {
+            System.out.println("The string \"" + input + "\" is a Palindrome.");
+        } else {
+            System.out.println("The string \"" + input + "\" is NOT a Palindrome.");
+        }
+
+        sc.close();
+    }
+
+    // Recursive function
+    public static boolean checkPalindrome(String str, int start, int end) {
+
+        // Base condition: if pointers cross or meet
+        if (start >= end) {
+            return true;
+        }
+
+        // If mismatch found
+        if (str.charAt(start) != str.charAt(end)) {
+            return false;
+        }
+
+        // Recursive call for next inner characters
+        return checkPalindrome(str, start + 1, end - 1);
+    }
+}
