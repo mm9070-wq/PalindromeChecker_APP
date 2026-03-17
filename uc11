@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class UseCase11PalindromeCheckerApp {
+
+    // Main method - Entry point
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input from user
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        // Create object of PalindromeChecker class
+        PalindromeChecker checker = new PalindromeChecker();
+
+        // Call method
+        boolean result = checker.checkPalindrome(input);
+
+        // Display result
+        if (result) {
+            System.out.println("The string \"" + input + "\" is a Palindrome.");
+        } else {
+            System.out.println("The string \"" + input + "\" is NOT a Palindrome.");
+        }
+
+        sc.close();
+    }
+}
+
+// Separate class for palindrome logic (Encapsulation)
+class PalindromeChecker {
+
+    // Method to check palindrome
+    public boolean checkPalindrome(String input) {
+
+        // Normalize string (optional enhancement)
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        int start = 0;
+        int end = normalized.length() - 1;
+
+        // Two-pointer approach
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+}
